@@ -8,6 +8,13 @@
     <artifactId>aspe.Kt</artifactId>
     <version>0.1</version>
 
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>core</module>
+        <module>it</module>
+    </modules>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -19,7 +26,6 @@
         <junit-jupiter.version>5.4.0</junit-jupiter.version>
         <kotlintest-runner-junit5.version>3.3.2</kotlintest-runner-junit5.version>
         <!--Plugins-->
-        <maven.surefire.version>${maven-surefire-plugin.version}</maven.surefire.version>
         <jcabi-maven-plugin.version>0.14.1</jcabi-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M1</maven-surefire-plugin.version>
@@ -73,12 +79,6 @@
                         <goals>
                             <goal>compile</goal>
                         </goals>
-                        <configuration>
-                            <sourceDirs>
-                                <source>src/main/java</source>
-                                <source>src/main/kotlin</source>
-                            </sourceDirs>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>test-compile</id>
@@ -86,12 +86,6 @@
                         <goals>
                             <goal>test-compile</goal>
                         </goals>
-                        <configuration>
-                            <sourceDirs>
-                                <source>src/test/java</source>
-                                <source>src/test/kotlin</source>
-                            </sourceDirs>
-                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
@@ -133,61 +127,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>com.jcabi</groupId>
-                <artifactId>jcabi-maven-plugin</artifactId>
-                <version>${jcabi-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>ajc-compile</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>ajc</goal>
-                        </goals>
-                        <configuration>
-                            <tempDirectory>${project.build.directory}/jcabi-ajc</tempDirectory>
-                            <classesDirectory>${project.build.outputDirectory}</classesDirectory>
-                            <aspectDirectories>
-                                <directory>${project.basedir}/src/main/kotlin/io/github/serpro69/aspekt/aspect</directory>
-                            </aspectDirectories>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>ajc-test-compile</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>ajc</goal>
-                        </goals>
-                        <configuration>
-                            <tempDirectory>${project.build.directory}/jcabi-ajc-test</tempDirectory>
-                            <classesDirectory>${project.build.testOutputDirectory}</classesDirectory>
-                            <aspectDirectories>
-                                <directory>${project.basedir}/src/main/kotlin/io/github/serpro69/aspekt/aspect</directory>
-                                <directory>${project.basedir}/src/test/kotlin/io/github/serpro69/aspekt/aspect</directory>
-                            </aspectDirectories>
-                            <scopes>
-                                <scope>compile</scope>
-                                <scope>provided</scope>
-                                <scope>system</scope>
-                                <scope>runtime</scope>
-                                <scope>test</scope>
-                            </scopes>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjrt</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjtools</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
