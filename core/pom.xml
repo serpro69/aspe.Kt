@@ -15,13 +15,6 @@
         <version>0.1</version>
     </parent>
 
-    <properties>
-        <!--Dependencies-->
-        <aspectj.version>1.9.4</aspectj.version>
-        <!--Plugins-->
-        <jcabi-maven-plugin.version>0.14.1</jcabi-maven-plugin.version>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
@@ -115,4 +108,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

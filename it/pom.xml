@@ -52,6 +52,7 @@
                 <plugin>
                     <groupId>com.jcabi</groupId>
                     <artifactId>jcabi-maven-plugin</artifactId>
+                    <version>${jcabi-maven-plugin.version}</version>
                     <executions>
                         <execution>
                             <goals>
@@ -68,6 +69,12 @@
             <groupId>io.github.serpro69</groupId>
             <artifactId>aspe.Kt-core</artifactId>
             <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 </project>
