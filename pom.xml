@@ -13,12 +13,16 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--Code style-->
         <kotlin.code.style>official</kotlin.code.style>
-        <!--Versions-->
+        <!--Dependencies-->
         <kotlin.version>1.3.40</kotlin.version>
-        <kotlintest.version>3.3.2</kotlintest.version>
-        <maven.surefire.version>3.0.0-M1</maven.surefire.version>
         <aspectj.version>1.9.4</aspectj.version>
-        <jcabi-maven.plugin>1.0.0-SNAPSHOT</jcabi-maven.plugin>
+        <junit-jupiter.version>5.4.0</junit-jupiter.version>
+        <kotlintest-runner-junit5.version>3.3.2</kotlintest-runner-junit5.version>
+        <!--Plugins-->
+        <maven.surefire.version>${maven-surefire-plugin.version}</maven.surefire.version>
+        <jcabi-maven-plugin.version>0.14.1</jcabi-maven-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M1</maven-surefire-plugin.version>
     </properties>
 
     <repositories>
@@ -97,7 +101,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <executions>
                     <!-- Replacing default-compile as it is treated specially by maven -->
                     <execution>
@@ -128,21 +132,48 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <version>${maven-surefire-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>com.jcabi</groupId>
                 <artifactId>jcabi-maven-plugin</artifactId>
-                <version>0.14.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
+                <version>${jcabi-maven-plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>ajc-compile</id>
+                        <phase>process-classes</phase>
                         <goals>
                             <goal>ajc</goal>
                         </goals>
+                        <configuration>
+                            <tempDirectory>${project.build.directory}/jcabi-ajc</tempDirectory>
+                            <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+                            <aspectDirectories>
+                                <directory>${project.basedir}/src/main/kotlin/io/github/serpro69/aspekt/aspect</directory>
+                            </aspectDirectories>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>ajc-test-compile</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>ajc</goal>
+                        </goals>
+                        <configuration>
+                            <tempDirectory>${project.build.directory}/jcabi-ajc-test</tempDirectory>
+                            <classesDirectory>${project.build.testOutputDirectory}</classesDirectory>
+                            <aspectDirectories>
+                                <directory>${project.basedir}/src/main/kotlin/io/github/serpro69/aspekt/aspect</directory>
+                                <directory>${project.basedir}/src/test/kotlin/io/github/serpro69/aspekt/aspect</directory>
+                            </aspectDirectories>
+                            <scopes>
+                                <scope>compile</scope>
+                                <scope>provided</scope>
+                                <scope>system</scope>
+                                <scope>runtime</scope>
+                                <scope>test</scope>
+                            </scopes>
+                        </configuration>
                     </execution>
                 </executions>
                 <dependencies>
@@ -170,30 +201,24 @@
         <dependency>
             <groupId>io.kotlintest</groupId>
             <artifactId>kotlintest-runner-junit5</artifactId>
-            <version>3.3.2</version>
+            <version>${kotlintest-runner-junit5.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.4.0</version>
+            <version>${junit-jupiter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.4.0</version>
+            <version>${junit-jupiter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
             <version>${aspectj.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
