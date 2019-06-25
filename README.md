@@ -29,60 +29,15 @@ A collection of annotation-driven AspectJ utilities written in Kotlin.
 ### @Loggable
 Use this annotation to log function/method invocation and return details.  
 
-To use the annotation add the following plugin and dependencies to the `pom.xml`:
-
-```xml
-<project>
-<!--...-->
-    <build>
-        <plugins>
-            <!--...-->
-            <plugin>
-                <groupId>com.jcabi</groupId>
-                <artifactId>jcabi-maven-plugin</artifactId>
-                <version>0.14.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>ajc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!--...-->
-        </plugins>
-    </build>
-
-    <dependencies>
-        <!--...-->
-        <dependency>
-            <groupId>io.github.serpro69</groupId>
-            <artifactId>aspe.Kt-core</artifactId>
-            <version>0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>1.9.4</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!--...-->
-    </dependencies>
-</project>
-```
+**TODO: pom.xml and build.gradle examples.**
 
 ## Sample project
-See [pom.xml](it/pom.xml) and [sources](it/src) directory in [integration-test](it) module for sample pom setup and usage examples.
+**TODO**
 
 ## Deploy
 To run tests use: 
 ```
-$ ./mvnw clean test
-```
-
-To install locally use: 
-```
-$ ./mvnw clean install
+$ ./gradlew clean test
 ```
 
 
