@@ -92,6 +92,13 @@ and/or open a [new issue](https://github.com/serpro69/aspe.Kt/issues/new)
 if you would like to contribute.
 
 
+## Thanks
+Many thanks to these awesome tools that help us in creating open-source software:  
+
+[![Intellij IDEA](https://cloud.google.com/tools/images/icon_IntelliJIDEA.png)](http://www.jetbrains.com/idea) 
+[![YourKit Java profiler](https://www.yourkit.com/images/yklogo.png)](https://www.yourkit.com/features/)
+
+
 ## Licence
 This code is free to use under the terms of the MIT licence.
 See [LICENCE.md](LICENCE.md).
