@@ -25,8 +25,10 @@ class LogAspect {
     @Around("wrapFunction()")
     fun logFunction(jp: ProceedingJoinPoint): Any {
         val method = (jp.signature as MethodSignature).method
+        val kClass = method.declaringClass
 
         println("Invoked function: ${method.name}")
+        println("From class: $kClass")
 
         return jp.proceed()
     }

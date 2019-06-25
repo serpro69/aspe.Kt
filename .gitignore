@@ -1,6 +1,7 @@
-**/target
 /.idea
+**/.gradle
 **/.kotlintest
+**/build
 *.iml
 *.jar
 *.log

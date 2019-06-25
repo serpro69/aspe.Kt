@@ -1,0 +1,13 @@
+<aspectj>
+
+    <aspects>
+        <!-- Aspects -->
+        <aspect name="io.github.serpro69.aspekt.aspect.LogAspect"/>
+    </aspects>
+
+    <weaver options="-verbose -showWeaveInfo">
+        <include within="*"/>
+    </weaver>
+
+</aspectj>
+
