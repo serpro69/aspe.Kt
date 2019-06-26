@@ -1,6 +1,6 @@
-package io.github.serpro69.aspekt.annotation
+package io.github.serpro69.aspekt.core.annotation
 
-import io.github.serpro69.aspekt.annotation.Loggable.*
+import io.github.serpro69.aspekt.core.annotation.Loggable.*
 
 /**
  * Logs invocation and return details of annotated kotlin functions and java methods.

@@ -1,6 +1,6 @@
-package io.github.serpro69.aspekt.aspect
+package io.github.serpro69.aspekt.core.aspect
 
-import io.github.serpro69.aspekt.helper.LogHelper.log
+import io.github.serpro69.aspekt.core.helper.LogHelper.log
 import org.aspectj.lang.*
 import org.aspectj.lang.annotation.*
 import org.aspectj.lang.annotation.Pointcut
@@ -20,7 +20,7 @@ object LogAspect {
     /**
      * Pointcut for elements annotated with [io.github.serpro69.aspekt.annotation.Loggable].
      */
-    @Pointcut("@annotation(io.github.serpro69.aspekt.annotation.Loggable)")
+    @Pointcut("@annotation(io.github.serpro69.aspekt.core.annotation.Loggable)")
     fun loggableAnnotation() {
     }
 

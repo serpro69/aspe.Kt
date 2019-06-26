@@ -1,6 +1,6 @@
 package io.github.serpro69.aspekt.it
 
-import io.github.serpro69.aspekt.annotation.*
+import io.github.serpro69.aspekt.core.annotation.*
 
 class DeepThought {
 

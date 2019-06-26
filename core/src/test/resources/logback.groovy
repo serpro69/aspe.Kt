@@ -38,4 +38,4 @@ appender("Async-Appender", AsyncAppender) {
 }
 
 root(INFO, ["Console-Appender"])
-logger("io.github.serpro69.aspekt", INFO, ["Console-Appender", "File-Appender", "Async-Appender"], false)
+logger("io.github.serpro69.aspekt.core", INFO, ["Console-Appender", "File-Appender", "Async-Appender"], false)

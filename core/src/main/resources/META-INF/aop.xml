@@ -2,7 +2,7 @@
 
     <aspects>
         <!-- Aspects -->
-        <aspect name="io.github.serpro69.aspekt.aspect.LogAspect"/>
+        <aspect name="io.github.serpro69.aspekt.core.aspect.LogAspect"/>
     </aspects>
 
 <!--    <weaver options="-verbose -showWeaveInfo">-->

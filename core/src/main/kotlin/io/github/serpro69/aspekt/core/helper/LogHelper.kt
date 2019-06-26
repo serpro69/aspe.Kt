@@ -1,6 +1,6 @@
-package io.github.serpro69.aspekt.helper
+package io.github.serpro69.aspekt.core.helper
 
-import io.github.serpro69.aspekt.annotation.*
+import io.github.serpro69.aspekt.core.annotation.*
 import org.slf4j.*
 import java.lang.reflect.*
 

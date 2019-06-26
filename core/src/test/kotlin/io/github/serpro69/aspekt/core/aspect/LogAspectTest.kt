@@ -1,6 +1,6 @@
-package io.github.serpro69.aspekt.aspect
+package io.github.serpro69.aspekt.core.aspect
 
-import io.github.serpro69.aspekt.*
+import io.github.serpro69.aspekt.core.*
 import io.kotlintest.specs.*
 
 class LogAspectTest : FreeSpec({
