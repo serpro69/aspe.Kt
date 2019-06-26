@@ -1,31 +1,17 @@
 package io.github.serpro69.aspekt.aspect
 
+import io.github.serpro69.aspekt.helper.LogHelper.log
 import org.aspectj.lang.*
 import org.aspectj.lang.annotation.*
 import org.aspectj.lang.annotation.Pointcut
 import org.aspectj.lang.reflect.*
-import org.slf4j.*
 
 @Suppress("unused")
 @Aspect
 object LogAspect {
-    private val logger = HashMap<Class<*>, Logger>()
-
-    private fun log(cls: Class<*>, message: () -> String) {
-        val log = logger.computeIfAbsent(cls) { LoggerFactory.getLogger(it) }
-        val msg = message.invoke()
-
-        when {
-            log.isTraceEnabled -> log.trace(msg)
-            log.isDebugEnabled -> log.debug(msg)
-            log.isInfoEnabled -> log.info(msg)
-            log.isWarnEnabled -> log.warn(msg)
-            log.isErrorEnabled -> log.error(msg)
-        }
-    }
 
     /**
-     * Pointcut for any function invokation.
+     * Pointcut for any function invocation.
      */
     @Pointcut("execution(* *(..))")
     fun anyFunction(){
@@ -44,13 +30,12 @@ object LogAspect {
     @Around("anyFunction() && loggableAnnotation()")
     fun logFunction(jp: ProceedingJoinPoint): Any {
         val method = (jp.signature as MethodSignature).method
-        val cls = method.declaringClass
 
-        log(cls) { "Invoked function '${method.name}' from class: '$cls'" }
+        log(method) { "Invoked: '${method.name}'" }
 
         val returnValue = jp.proceed()
 
-        log(cls) { "Returning: $returnValue" }
+        log(method) { "Returning: $returnValue" }
 
         return returnValue
     }
