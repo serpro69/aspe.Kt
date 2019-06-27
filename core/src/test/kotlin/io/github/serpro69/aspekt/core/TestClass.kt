@@ -9,4 +9,7 @@ internal class TestClass {
 
     @Loggable
     fun getName() = "Deep Thought"
+
+    @Loggable(logLevel = Loggable.LogLevel.DEBUG)
+    fun notLogged() = println("")
 }

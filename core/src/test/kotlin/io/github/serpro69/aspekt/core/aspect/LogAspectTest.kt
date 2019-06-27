@@ -33,5 +33,15 @@ class LogAspectTest : FreeSpec({
                 )
             }
         }
+
+        "WHEN logger is set to level.INFO and loggable annotation with level.DEBUG" - {
+            testClass.notLogged()
+
+            "THEN invocation and return are not logged" {
+                val logs = LogReader.readLogfile()
+
+                logs shouldNotContain "Invoked: 'notLogged'"
+            }
+        }
     }
 })
