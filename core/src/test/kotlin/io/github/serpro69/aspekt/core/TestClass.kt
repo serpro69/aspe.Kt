@@ -6,4 +6,7 @@ internal class TestClass {
 
     @Loggable
     fun sum(x: Int, y: Int) = x + y
+
+    @Loggable
+    fun getName() = "Deep Thought"
 }

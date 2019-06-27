@@ -35,7 +35,7 @@ object LogAspect {
 
         val returnValue = jp.proceed()
 
-        log(method) { "Returning: $returnValue" }
+        log(method) { "Returning: '$returnValue'" }
 
         return returnValue
     }
