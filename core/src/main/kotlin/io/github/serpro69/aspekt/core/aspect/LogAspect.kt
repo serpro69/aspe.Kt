@@ -18,7 +18,7 @@ object LogAspect {
     }
 
     /**
-     * Pointcut for elements annotated with [io.github.serpro69.aspekt.annotation.Loggable].
+     * Pointcut for elements annotated with [io.github.serpro69.aspekt.core.annotation.Loggable].
      */
     @Pointcut("@annotation(io.github.serpro69.aspekt.core.annotation.Loggable)")
     fun loggableAnnotation() {
@@ -28,7 +28,7 @@ object LogAspect {
      * Logs function invocation, arguments and return type/value.
      */
     @Around("anyFunction() && loggableAnnotation()")
-    fun logFunction(jp: ProceedingJoinPoint): Any {
+    fun logFunction(jp: ProceedingJoinPoint): Any? {
         val method = (jp.signature as MethodSignature).method
 
         log(method) { "Invoked: '${method.name}'" }

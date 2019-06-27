@@ -6,12 +6,12 @@ import java.lang.reflect.*
 
 internal object LogHelper {
     private val loggers = HashMap<String, Logger>()
-    private val loggable = { method: Method -> method.getAnnotation(Loggable::class.java) }
+    private val annotation = { method: Method -> method.getAnnotation(Loggable::class.java) }
 
     fun log(method: Method, message: () -> String) {
         val logger = getLogger(method)
         val msg = message.invoke()
-        val annotation = loggable(method)
+        val annotation = annotation(method)
 
         when (annotation.logLevel) {
             Loggable.LogLevel.TRACE -> if (logger.isTraceEnabled) logger.trace(msg)
@@ -23,11 +23,11 @@ internal object LogHelper {
     }
 
     private fun getLogger(method: Method): Logger {
-        return when (val loggerName = loggable(method).loggerName) {
+        return when (val loggerName = annotation(method).loggerName) {
             "" -> {
                 method.declaringClass?.let { cls: Class<out Any> ->
                     computeLogger(cls.name)
-                } ?: computeLogger(Loggable::class.java.name)
+                } ?: computeLogger("Loggable")
             }
             else -> computeLogger(loggerName)
         }
