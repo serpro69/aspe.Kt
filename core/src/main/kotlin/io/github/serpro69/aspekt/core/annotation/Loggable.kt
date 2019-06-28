@@ -12,7 +12,9 @@ import io.github.serpro69.aspekt.core.annotation.Loggable.*
 @Target(AnnotationTarget.FUNCTION)
 annotation class Loggable(
     val logLevel: LogLevel = LogLevel.INFO,
-    val loggerName: String = ""
+    val loggerName: String = "",
+    val logDuration: Boolean = true,
+    val logResult: Boolean = true
 ) {
 
     enum class LogLevel(private val level: Int) {
