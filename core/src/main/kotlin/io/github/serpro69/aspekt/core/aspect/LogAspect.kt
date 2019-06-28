@@ -28,7 +28,7 @@ object LogAspect {
     @Around("anyFunction() && loggableAnnotation()")
     fun logFunction(pjp: ProceedingJoinPoint): Any? {
         val start = System.nanoTime()
-        val returnValue = pjp.proceed()
+        val returnValue: Any? = pjp.proceed()
         val end = System.nanoTime()
 
         log(pjp) { jp, method, annotation ->
@@ -44,7 +44,14 @@ object LogAspect {
             if (annotation.logDuration) sb.append("\nDuration: ${end - start} nanos")
 
             // Log return value
-            if (annotation.logResult) sb.append("\nReturn: ${returnValue::class.qualifiedName to returnValue}")
+            if (annotation.logResult) {
+                // Even if function returns kotlin.Unit, calling `jp.proceed()` give a null as a result.
+                if (returnValue == null) {
+                    sb.append("\nReturn: null")
+                } else {
+                    sb.append("\nReturn: ${returnValue::class.qualifiedName to returnValue}")
+                }
+            }
 
             // TODO: 28.06.19 should we log execution of around advice (if debug.isEnabled) to count overhead?
             sb.toString()

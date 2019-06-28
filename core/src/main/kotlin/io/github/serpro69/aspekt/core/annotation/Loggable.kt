@@ -17,11 +17,11 @@ annotation class Loggable(
     val logResult: Boolean = true
 ) {
 
-    enum class LogLevel(private val level: Int) {
-        TRACE(0),
-        DEBUG(1),
-        INFO(2),
-        WARN(3),
-        ERROR(4)
+    enum class LogLevel {
+        TRACE,
+        DEBUG,
+        INFO,
+        WARN,
+        ERROR
     }
 }

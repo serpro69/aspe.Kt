@@ -55,13 +55,59 @@ class LogAspectTest : FreeSpec() {
                 }
             }
 
-            "WHEN logger is set to level.INFO and loggable annotation with level.DEBUG" - {
+            "WHEN logger is set to level.INFO and loggable annotation with logLevel.DEBUG" - {
                 testClass.notLogged()
 
                 "THEN invocation and return are not logged" {
                     val logs = LogReader.readLogfile()
 
                     logs shouldBe emptyList()
+                }
+            }
+
+            "WHEN function return type is kotlin.Unit" - {
+                testClass.returnUnit()
+
+                "THEN invocation and return are logged" {
+                    val logs = LogReader.readLogfile()
+
+                    logsWithoutDuration(logs) shouldContainExactly expectedLogDetailsWithoutDuration(
+                        "returnUnit",
+                        emptyArray(),
+                        null
+                    )
+                }
+            }
+
+            "WHEN logDuration == false" - {
+                testClass.logDurationFalse()
+
+                val logs = LogReader.readLogfile()
+                "THEN invocation and return are logged" {
+
+                    logsWithoutDuration(logs) shouldContainExactly expectedLogDetailsWithoutDuration(
+                        "logDurationFalse",
+                        emptyArray(),
+                        null
+                    )
+                }
+
+                "AND execution duration is not logged" {
+                    logsDurationEntry(logs) shouldBe null
+                }
+            }
+
+            "WHEN logResult == false" - {
+                testClass.logReturnFalse()
+
+                val logs = LogReader.readLogfile()
+                "THEN invocation and params are logged and result is not logged" {
+
+                    logsWithoutDuration(logs) shouldContainExactly expectedLogDetailsWithoutDuration(
+                        "logReturnFalse",
+                        emptyArray(),
+                        null
+                    ).dropLast(1)
                 }
             }
         }
