@@ -1,4 +1,5 @@
 ### aspe.Kt
+[![Version Badge](https://api.bintray.com/packages/serpro69/maven/aspe.Kt-core/images/download.svg) ](https://bintray.com/serpro69/maven/aspe.Kt-core/_latestVersion)
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 [![Issues Badge](https://img.shields.io/github/issues/serpro69/aspe.Kt.svg)](https://github.com/serpro69/aspe.Kt/issues)
 [![Licence Badge](https://img.shields.io/github/license/serpro69/aspe.Kt.svg)](LICENCE.md)
