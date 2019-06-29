@@ -3,12 +3,18 @@ import org.jetbrains.kotlin.gradle.tasks.*
 
 plugins {
     kotlin("jvm") version "1.3.40"
+    `build-scan`
 }
 
 val agent: Configuration by configurations.creating
 
 dependencies {
     agent(Libs.AspectJ.aspectjweaver)
+}
+
+buildScan {
+    termsOfServiceUrl = "https://gradle.com/terms-of-service"
+    termsOfServiceAgree = "yes"
 }
 
 tasks.withType(Wrapper::class) {
